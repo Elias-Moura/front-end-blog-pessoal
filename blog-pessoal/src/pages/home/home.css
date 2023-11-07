@@ -10,3 +10,11 @@
     margin: 0 auto;
 
 }
+
+.container__home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid;
+}
