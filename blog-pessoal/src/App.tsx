@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Home />
+      <Home title='Olá,' description='Seja bem vinde!'/>
     </>
   )
 }
