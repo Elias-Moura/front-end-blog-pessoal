@@ -1,32 +1,33 @@
-import './home.css';
-import HomeLogo from '../../assets/home/Home.jpg';
-import { useState } from 'react';
-import PropsExemple from '../../components/props-exemple/props-ex';
-import HookExemple from '../../components/hooks-exemple/hooks-ex';
+import homeLogo from "../../assets/home/home.png";
 
-interface Props {
-    title: string,
-    description: string,
-}
+function Home() {
+  return (
+    <>
+      <div className="bg-cyan-900 flex justify-center h-[80vh]">
+        <div className="container grid grid-cols-2 text-white">
+          <div className="flex flex-col gap-4 items-center justify-center py-4">
+            <h2 className="text-5xl font-bold">Seja bem vinde!</h2>
+            <p className="text-xl">
+              Expresse aqui seus pensamentos e opiniões.
+            </p>
+            <div className="flex justify-arround gap-4">
+              <button className="rounded bg-white text-blue-800 py-2 px-4">
+                Ver postagens
+              </button>
+            </div>
+          </div>
 
-function Home({ title="Olá.", description="Seja bem vindo!" } : Props) {
-    const [counter, setCounter] = useState(0);
-
-    function handleClick() {
-        setCounter(counter +1);
-    }
-
-    return (
-        <div className='container__home'>
-            <h1 className='text-3xl font-bold text-red-500 underline text-center'>Home</h1>
-            <p>{title} {description}</p>
-            <p>O valor é: {counter}</p>
-            <button onClick={handleClick}>Adicionar 1</button>
-            <PropsExemple mensage='Minha mensagem passada como props!' />
-            <HookExemple/>
-            <img src={HomeLogo} className='img' alt="Imagem tela inicial." />
+          <div className="flex justify-center items-center">
+            <img
+              src={homeLogo}
+              alt="Imagem de login."
+              className="w-2/3 h-2/3 rounded-md"
+            />
+          </div>
         </div>
-    )
+      </div>
+    </>
+  );
 }
 
 export default Home;
