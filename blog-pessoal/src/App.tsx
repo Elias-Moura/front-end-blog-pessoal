@@ -1,14 +1,22 @@
-import { useState } from 'react';
-import Home from './pages/home/home';
 import './index.css'
+import Home from './pages/home/home';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
+import Login from './pages/login/Login';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <Home />
-    </>
+    <main className='min-h-screen bg-indigo-900'>
+      <BrowserRouter>
+        <Navbar />
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/login'element={<Login />} />
+          </Routes>
+        <Footer />
+      </BrowserRouter>
+    </main>
   )
 }
 
