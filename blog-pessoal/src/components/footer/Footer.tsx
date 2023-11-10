@@ -3,7 +3,7 @@ import { GithubLogo, LinkedinLogo, InstagramLogo } from "@phosphor-icons/react";
 function Footer() {
   return (
     <>
-      <div className="flex bg-primary justify-center text-white ">
+      <div className="flex bg-primary dark:bg-zinc-950 justify-center text-white ">
         <div className="flex flex-col items-center py-4">
           <p className="text-xl font-bold">Blog pessoal Generation</p>
           <p className="text-lg">Acesse minhas redes sociais</p>
