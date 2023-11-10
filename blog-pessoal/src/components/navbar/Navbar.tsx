@@ -1,19 +1,27 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+  
+  const [loggend, setLogged] = useState(false);
   return (
     <>
-      <div className="w-full bg-indigo-900 text-white flex justify-center px-10 py-[.94rem] h-">
-        <div className="container flex justify-between text-lg">
-          <div className="text-2x1 font-bold uppercase">Blog pessoal</div>
-          <div className="flex gap-4">
-            <Link to='/login' className='hoover:underline'>Logar</Link>
-            <Link to='/' className='hoover:underline'>Home</Link>
-            <div className="hoover:underline">Postagens</div>
-            <div className="hoover:underline">Temas</div>
-            <div className="hoover:underline">Cadastrar tena</div>
-            <div className="hoover:underline">Perfil</div>
-            <div className="hoover:underline">Sair</div>
+      <div className="w-full bg-primary text-white flex justify-center px-10 py-5 h-">
+        <div className="flex justify-between text-lg ">
+          <div className="flex justify-center items-center gap-4">
+            <Link to='/login' className='text-xl  p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black '>Entrar</Link>
+            <Link to='/' className='text-xl p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black '>Home</Link>
+
+            {loggend
+            ?
+            <><a className="text-xl font-bold p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black ">Postagens</a>
+            <a className="text-xl font-bold p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black ">Temas</a>
+            <a className="text-xl font-bold p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black ">Cadastrar tema</a>
+            <a className="text-xl font-bold p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black ">Perfil</a>
+            <a className="text-xl font-bold p-2 border border-transparent rounded-full duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black ">Sair</a></>
+            :
+            ""}
+            
           </div>
         </div>
       </div>
