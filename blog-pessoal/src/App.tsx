@@ -1,23 +1,29 @@
-import './index.css'
+import "./index.css";
 import Home from "./pages/home/Home";
-import Navbar from './components/navbar/Navbar';
-import Footer from './components/footer/Footer';
-import Login from './pages/login/Login';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from "./components/navbar/Navbar";
+import Footer from "./components/footer/Footer";
+import Login from "./pages/login/Login";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainContent from "./components/main-frame/main-frame";
+import { useContext, useState } from "react";
+import { ThemeContext } from "./contexts/themeInfo";
 
 function App() {
+  const { theme, setTheme } = useContext(ThemeContext);
   return (
-    <main className='min-h-screen bg-red-900 flex flex-col'>
+    <div className={`min-h-screen flex flex-col ${theme}`}>
       <BrowserRouter>
         <Navbar />
+        <MainContent>
           <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/login'element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
+        </MainContent>
         <Footer />
       </BrowserRouter>
-    </main>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
