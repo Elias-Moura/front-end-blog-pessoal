@@ -1,15 +1,36 @@
-import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { ChangeEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import hiddenPass from "./assets/eye-svgrepo-com.svg";
 import showPass from "./assets/eye-password-hide-svgrepo-com.svg";
 import asideImg from "./assets/aside.png";
+import { useAuth } from "../../contexts/AuthProvider/useAuth";
 
 function Login() {
   const [seePass, setSeePass] = useState(false);
+  const [user, setUser] = useState({email: '', password:''})
+
+  const auth = useAuth();
+  const navigate = useNavigate();
+  
+  function refreshState(e:ChangeEvent<HTMLInputElement>){
+    setUser({...user, [e.target.name]: e.target.value})
+  }
 
   const handleSeePass = () => {
     setSeePass(!seePass);
   };
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+      await auth.authenticate(user.email, user.password)
+      navigate('/posts')
+
+    } catch (error) {
+      alert('Invalid email or password.')
+    }
+    
+  }
 
   return (
     <div
@@ -22,7 +43,7 @@ function Login() {
     >
       <div className="flex flex-col items-center justify-center min-h-[500px]">
         <h2 className="text-3xl flex items-center font-bold h-[40%]">Entrar</h2>
-        <form className="">
+        <form onSubmit={(e) => {handleSubmit(e)}} className="">
           <div className="relative flex flex-col">
             <input
               required
@@ -34,7 +55,8 @@ function Login() {
                 focus:bg-none
                 focus:outline-none
                 "
-              placeholder="email"
+              value={user.email}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>{refreshState(e)}}
             />
             <label
               htmlFor="email"
@@ -61,6 +83,8 @@ function Login() {
                 border rounded-md 
                 focus:outline-none
                 p-1 px-4 mb-4"
+              value={user.password}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>{refreshState(e)}}
             />
             <label
               htmlFor="password"
@@ -92,18 +116,20 @@ function Login() {
               />
             </label>
           </div>
-        </form>
+          <button
+            type="submit"
 
-        <div className="flex flex-col pt-4 justify-arround gap-2">
-          <Link
-            to={"/login"}
             className="text-lg w-full text-center font-bold p-2 
             border rounded-md duration-500 hover:shadow-2xl 
             hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black 
             rounded-md text-lg text-white text-blue-800 py-2 px-12"
           >
             Entrar
-          </Link>
+          </button>
+        </form>
+
+        <div className="flex flex-col pt-4 justify-arround gap-2">
+         
           <Link
             to={"/recover-password"}
             className="text-lg w-full text-center font-bold p-2 border border-transparent rounded-md duration-500 hover:shadow-2xl hover:shadow-blue-400 hover:border hover:bg-blue-100 hover:text-black 
