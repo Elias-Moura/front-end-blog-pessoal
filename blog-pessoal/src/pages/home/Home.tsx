@@ -24,7 +24,7 @@ export default function Home() {
               border rounded-md duration-500 hover:shadow-2xl 
               hover:shadow-blue-400 hover:border hover:bg-blue-100 
               hover:text-black 
-              rounded-md text-white text-blue-800 py-2 px-14
+              text-white py-2 px-14
               "
           >
             Entrar
@@ -35,7 +35,7 @@ export default function Home() {
               border border-transparent rounded-md duration-500 hover:shadow-2xl 
               hover:shadow-blue-400 hover:border hover:bg-blue-100 
               hover:text-black 
-              rounded-md text-white text-blue-800 py-2 px-14
+               text-white py-2 px-14
               "
           >
             Cadastre-se
@@ -46,7 +46,7 @@ export default function Home() {
               border border-transparent rounded-md duration-500 hover:shadow-2xl 
               hover:shadow-blue-400 hover:border hover:bg-blue-100 
               hover:text-black 
-              rounded-md text-white text-blue-800 py-2 px-14
+              text-white  py-2 px-14
               "
           >
             Ler posts
