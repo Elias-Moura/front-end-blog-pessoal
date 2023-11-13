@@ -5,11 +5,13 @@ import Footer from "./components/footer/Footer";
 import Login from "./pages/login/Login";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainContent from "./components/main-frame/main-frame";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ThemeContext } from "./contexts/themeInfo";
+import Register from "./pages/register/Register";
+import { ProtectedLayout } from "./components/protected-layout";
 
 function App() {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   return (
     <div className={`min-h-screen flex flex-col ${theme}`}>
       <BrowserRouter>
@@ -18,6 +20,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cadastrar" element={<Register />} />
+            <Route path="/posts" element={<ProtectedLayout><h1 className="text-white text-2xl">Você está na sessão de posts!</h1></ProtectedLayout>}>
+            </Route>
           </Routes>
         </MainContent>
         <Footer />
