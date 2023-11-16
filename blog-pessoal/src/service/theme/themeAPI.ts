@@ -29,3 +29,13 @@ export async function updateTheme(theme: {id: number, titulo: string, descricao:
     return null
   }
 }
+
+export async function deleteTheme(id: number) {
+  try {
+    const response = await Api.delete("/temas/"+ id)
+    return response.data
+  } catch (error) {
+    console.log(error)
+    return null
+  }
+}
