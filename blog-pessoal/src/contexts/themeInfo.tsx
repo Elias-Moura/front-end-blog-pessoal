@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext } from "react";
 import usePersistedState from "../utils/usePersistedState";
 
 interface UserThemeType {
