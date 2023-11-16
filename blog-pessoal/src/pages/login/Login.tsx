@@ -50,7 +50,8 @@ function Login() {
               type="email"
               id="email"
               name="email"
-              className="peer placeholder-transparent 
+              placeholder="email"
+              className="peer 
                 text-white bg-transparent border rounded-md p-1 px-4 mb-8
                 focus:bg-none
                 focus:outline-none
@@ -61,12 +62,12 @@ function Login() {
             <label
               htmlFor="email"
               className="absolute -top-8 left-0 p-1 px-4
-                transition-all
-                peer-placeholder-shown:text-white
-                peer-placeholder-shown:top-0
-                peer-focus:-top-6
-                peer-focus:text-sm
-                "
+              transition-all
+              peer-placeholder-shown:text-white
+              peer-placeholder-shown:top-0
+              peer-focus:-top-6
+              peer-focus:text-sm
+              "
             >
               Email
             </label>
