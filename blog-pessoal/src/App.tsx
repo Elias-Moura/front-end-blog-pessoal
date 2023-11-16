@@ -9,6 +9,9 @@ import { useContext } from "react";
 import { ThemeContext } from "./contexts/themeInfo";
 import Register from "./pages/register/Register";
 import { ProtectedLayout } from "./components/protected-layout";
+import ThemesPage from "./pages/themes";
+import CreateThemeFormProvider from "./contexts/create-theme-form/themeFormContext";
+
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -21,7 +24,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastrar" element={<Register />} />
-            <Route path="/posts" element={<ProtectedLayout><h1 className="text-white text-2xl">Você está na sessão de posts!</h1></ProtectedLayout>}>
+            <Route path="/posts" element={<ProtectedLayout><h1 className="text-white text-2xl">Você está na sessão de posts!</h1></ProtectedLayout>}></Route>
+            <Route path="/temas" element={<CreateThemeFormProvider><ThemesPage></ThemesPage></CreateThemeFormProvider>}>
             </Route>
           </Routes>
         </MainContent>
