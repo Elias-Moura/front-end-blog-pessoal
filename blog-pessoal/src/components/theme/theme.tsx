@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useCreateThemeForm } from "../../contexts/create-theme-form/useCreateThemeForm";
-import { updateTheme } from "../../service/theme/themeAPI";
+import { deleteTheme, updateTheme } from "../../service/theme/themeAPI";
 
 
 interface Props {
@@ -11,8 +11,8 @@ interface Props {
 
 export default function Theme({id, titulo, descricao} : Props) {
   const { show } = useCreateThemeForm();
-  const [update, setUpdate] = useState(false);
   const [tema, setTema] = useState<Props>({id: id, titulo: titulo, descricao: descricao })
+  const [deleted, setDeleted] = useState(false)
 
   async function handleEdit() {
     console.log("editar", tema) ;
@@ -22,8 +22,14 @@ export default function Theme({id, titulo, descricao} : Props) {
     console.log("Response: ", response)
   }
 
-  function handleDelete() {
-    console.log("deletei.")
+  async function handleDelete() {
+    const deleteMe = confirm("Você realmente quer deletar?")
+    if(deleteMe){
+      const response = await deleteTheme(tema.id)
+      console.log("Response delete", response)
+      setDeleted(true)
+    }
+
   }
 
   function refreshState(e:ChangeEvent<HTMLInputElement>){
@@ -32,17 +38,18 @@ export default function Theme({id, titulo, descricao} : Props) {
 
   return (
     <div
-      className="
-        dark:bg-zinc-600
-        rounded-xl mx-[2rem] px-8
-        flex text-white bg-primary
-        shadow-2xl
-        w-[60%]
-        lg:w-[80%] lg:max-w-[370px]
-        xl:w-[85%] xl:max-w-[370px]
-        justify-self-center
-        hover:scale-110 duration-300
-        "
+      className={`
+      dark:bg-zinc-600
+      rounded-xl mx-[2rem] px-8
+      flex text-white bg-primary
+      shadow-2xl
+      w-[60%]
+      lg:w-[80%] lg:max-w-[370px]
+      xl:w-[85%] xl:max-w-[370px]
+      justify-self-center
+      hover:scale-110 duration-300
+      ${deleted && "hidden"}
+      `}
     >
       <div className="flex flex-col justify-center min-h-[450px] w-[100%] gap-[4rem]">
         <div className="flex flex-col  items-center min-h-[40%]">
@@ -78,9 +85,7 @@ export default function Theme({id, titulo, descricao} : Props) {
           </button>
           <button
             disabled={show}
-            onClick={() => {
-              console.log("Deletar tema");
-            }}
+            onClick={handleDelete}
             className="text-xl text-center w-full font-bold 
               border border-transparent rounded-md duration-500 hover:shadow-2xl 
               hover:shadow-red-400 hover:border hover:bg-red-600 
