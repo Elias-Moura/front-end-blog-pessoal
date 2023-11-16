@@ -1,5 +1,8 @@
+import Post from "./Post";
+
 export default interface Theme {
   id: number,
-  description: string,
-  posts: string | null, 
+  titulo: string,
+  descricao: string,
+  posts: Post[] | [], 
 }
