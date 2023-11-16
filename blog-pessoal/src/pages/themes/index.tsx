@@ -43,8 +43,7 @@ export default function ThemesPage() {
           {themes.map((theme) => (
             <Theme
               key={theme.id}
-              name={theme.titulo}
-              description={theme.descricao}
+              {...theme}
             />
           ))}
         </ListThemes>
