@@ -15,7 +15,7 @@ export async function fetchPostByTitle(active=true, title:string) {
     const response = await Api.get(`/postagens/titulo/${title}`)
     return response.data
   } catch (error) {
-    console.log(error)
+    console.log(error, active)
     return error
   }
 }
@@ -25,7 +25,7 @@ export async function fetchPostById(active=true, id:number) {
     const response = await Api.get(`/postagens/${id}`)
     return response.data
   } catch (error) {
-    console.log(error)
+    console.log(error, active)
     return error
   }
 }

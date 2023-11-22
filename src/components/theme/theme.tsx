@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   deleteTheme,
   fetchThemesById,
@@ -44,7 +44,7 @@ export default function Theme({ id, titulo, descricao }: Props) {
     setDeleted(true);
   }
 
-  function refreshState(e: ChangeEvent<HTMLInputElement>) {
+  function refreshState(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
     setTheme({ ...theme, [e.target.name]: e.target.value });
   }
 
@@ -74,7 +74,7 @@ export default function Theme({ id, titulo, descricao }: Props) {
           rows={2}
           readOnly={!edited}
           value={theme.titulo}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => refreshState(e)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => refreshState(e)}
         />
         <textarea
           name="descricao"
@@ -86,7 +86,7 @@ export default function Theme({ id, titulo, descricao }: Props) {
           readOnly={!edited}
           rows={4}
           value={theme.descricao}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => refreshState(e)}
+          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => refreshState(e)}
         />
         <div className="flex flex-col gap-2">
           <button

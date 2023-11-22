@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import hiddenPass from "../login/assets/eye-svgrepo-com.svg";
 import showPass from "../login/assets/eye-password-hide-svgrepo-com.svg";
 import asideImg from "../login/assets/aside.png";

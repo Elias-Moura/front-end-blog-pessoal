@@ -56,9 +56,7 @@ export default function CreatePost({ setOpen }: Props) {
     return !isNaN(Number(value));
   }
 
-  function capitalize(str: string) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+
 
   function validate(value: string) {
     const msg = [];
@@ -85,7 +83,7 @@ export default function CreatePost({ setOpen }: Props) {
     const response = await createPost(post);
 
     if(response instanceof AxiosError) {
-      toastAlert("Erro ao criar post: " + response.response.data, "error", 10000);
+      toastAlert("Erro ao criar post: " + response.response?.data, "error", 10000);
       setOpen(false);
       return;
     }
@@ -97,7 +95,7 @@ export default function CreatePost({ setOpen }: Props) {
     setOpen(false);
   }
 
-  function refreshState(e: ChangeEvent<HTMLInputElement>) {
+  function refreshState(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
     setPost({ ...post, [e.target.name]: e.target.value });
   }
 
@@ -148,7 +146,6 @@ export default function CreatePost({ setOpen }: Props) {
           <textarea
             rows={4}
             required
-            type="text"
             id="texto"
             name="texto"
             placeholder="texto"
@@ -159,9 +156,7 @@ export default function CreatePost({ setOpen }: Props) {
                 resize-none
                 "
             value={post.texto}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              refreshState(e);
-            }}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => refreshState(e)}
           />
           <label
             htmlFor="descricao"
@@ -183,7 +178,9 @@ export default function CreatePost({ setOpen }: Props) {
         </div>
         <div className="relative flex flex-col mt-4">
           <select
-            onChange={(e) =>refreshState(e)}
+            onChange={(e: ChangeEvent<HTMLSelectElement>) => {
+              setPost({...post, [e.target.name] : e.target.value})
+            }}
             required
             className="bg-transparent border rounded-md p-1 mt-2"
             name="temaId"

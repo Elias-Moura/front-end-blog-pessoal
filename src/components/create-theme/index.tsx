@@ -72,7 +72,7 @@ export default function CreateTheme({ setOpen }: Props) {
     setOpen(false);
   }
 
-  function refreshState(e: ChangeEvent<HTMLInputElement>) {
+  function refreshState(e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>) {
     setTheme({ ...theme, [e.target.name]: e.target.value });
   }
 
@@ -123,7 +123,6 @@ export default function CreateTheme({ setOpen }: Props) {
           <textarea
             rows={4}
             required
-            type="text"
             id="descricao"
             name="descricao"
             placeholder="descricao"
@@ -134,7 +133,7 @@ export default function CreateTheme({ setOpen }: Props) {
                 resize-none
                 "
             value={theme.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
               refreshState(e);
             }}
           />

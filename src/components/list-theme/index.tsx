@@ -1,9 +1,13 @@
 import { FC } from "react";
 
+interface my_obj {
+  id: number
+}
+
 interface Props {
-  items: object[]
-  researchedItems: object[]
-  WrappedComponent: FC<any>
+  items: my_obj[]
+  researchedItems: my_obj[]
+  WrappedComponent: FC<unknown>
 }
 
 export default function ListOfContent({items,researchedItems, WrappedComponent}: Props){

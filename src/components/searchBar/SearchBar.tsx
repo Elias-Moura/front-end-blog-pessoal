@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import toastAlert from '../../utils/toastAlert';
 
 interface Props {
   researchedItens: object[]
   setResearchedItens: (arg0: object[]) => void
-  fetchItemByTitle: (active: boolean, title: string) => Promise<any>
+  fetchItemByTitle: (active: boolean, title: string) => Promise<object[]>
 }
 
 
@@ -13,7 +13,7 @@ export default function SearchBar({ fetchItemByTitle, setResearchedItens}:Props)
 
 
   async function handlePesquisa(
-    e: ChangeEvent<HTMLFormElement> | undefined = undefined
+    e: FormEvent<HTMLFormElement> | undefined = undefined
   ) {
     if(e !== undefined){
       e.preventDefault();
@@ -36,7 +36,7 @@ export default function SearchBar({ fetchItemByTitle, setResearchedItens}:Props)
   return (
     <div className="flex flex-col  items-center justify-center">
     <form
-      onSubmit={(e) => {
+      onSubmit={(e: FormEvent<HTMLFormElement>) => {
         handlePesquisa(e);
       }}
     >
