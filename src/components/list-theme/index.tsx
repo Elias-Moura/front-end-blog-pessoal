@@ -4,13 +4,13 @@ interface my_obj {
   id: number
 }
 
-interface Props {
+interface Props<T> {
   items: my_obj[]
   researchedItems: my_obj[]
-  WrappedComponent: ComponentType
+  WrappedComponent: ComponentType<{ key: number } & T>
 }
 
-export default function ListOfContent({items,researchedItems, WrappedComponent}: Props){
+export default function ListOfContent<T extends my_obj>({items,researchedItems, WrappedComponent}: Props<T>){
   return (
     <div
       className="grid grid-cols-1
@@ -21,10 +21,10 @@ export default function ListOfContent({items,researchedItems, WrappedComponent}:
         researchedItems.length > 0
         ? 
         researchedItems.map((item) => {
-            return <WrappedComponent key={item.id} {...item} />;
+            return <WrappedComponent key={item.id} {...item as T} />;
           })
         : 
-        items.map((item) => <WrappedComponent key={item.id} {...item} />)}
+        items.map((item) => <WrappedComponent key={item.id} {...item as T} />)}
     </div>
   );
 }
