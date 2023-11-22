@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ComponentType } from "react";
 
 interface my_obj {
   id: number
@@ -7,7 +7,7 @@ interface my_obj {
 interface Props {
   items: my_obj[]
   researchedItems: my_obj[]
-  WrappedComponent: FC<unknown>
+  WrappedComponent: ComponentType
 }
 
 export default function ListOfContent({items,researchedItems, WrappedComponent}: Props){

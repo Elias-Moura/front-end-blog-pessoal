@@ -1,14 +1,13 @@
-import { FormEvent, useState } from 'react'
+import { Dispatch, FormEvent, SetStateAction, useState } from 'react'
 import toastAlert from '../../utils/toastAlert';
 
-interface Props {
-  researchedItens: object[]
-  setResearchedItens: (arg0: object[]) => void
-  fetchItemByTitle: (active: boolean, title: string) => Promise<object[]>
+interface Props<T> {
+  setResearchedItens: Dispatch<SetStateAction<T[]>>;
+  fetchItemByTitle: (active: boolean, title: string) => Promise<T | undefined>
 }
 
 
-export default function SearchBar({ fetchItemByTitle, setResearchedItens}:Props) {
+export default function SearchBar<T>({ fetchItemByTitle, setResearchedItens}:Props<T>) {
   const [search, setSearch] = useState("");
 
 
@@ -20,17 +19,22 @@ export default function SearchBar({ fetchItemByTitle, setResearchedItens}:Props)
     }
 
     if(search == "" || search == " "){
-      setResearchedItens([]);
+      setResearchedItens([] as T[]);
       return;
     }
     toastAlert("Pesquisando...", "info", 1000);
 
     const resposta = await fetchItemByTitle(true, search);
     console.log(resposta);
-    if(resposta.length == 0){
-      toastAlert("Nada encontrado.", "info", 2500);
+    if(resposta instanceof Array){
+      if(resposta.length == 0){
+        toastAlert("Nada encontrado.", "info", 2500);
+      } else {
+        setResearchedItens(resposta);
+      }
+    } else {
+      toastAlert("Error na linha 37 SearchBar,tsx", 'error')
     }
-    setResearchedItens(resposta);
   }
 
   return (

@@ -1,21 +1,22 @@
+import { Dispatch, SetStateAction } from "react";
 
-interface Props {
+interface Props<T> {
   btnName: string;
   customClassName?: string;
-  researchedItens: object[]
-  setResearchedItens: (arg0: object[]) => void
+  researchedItens: T[]
+  setResearchedItens: Dispatch<SetStateAction<T[]>>;
 }
 
-export default function BackBtn({ researchedItens, setResearchedItens, btnName, customClassName = "" }: Props) {
+export default function BackBtn<T>({ researchedItens, setResearchedItens, btnName, customClassName = "" }: Props<T>) {
   const defaultStyle =
     "border text-white p-4 rounded-md bg-black bg-opacity-40";
 
-  if (researchedItens.length > 0) {
+  if (researchedItens instanceof Array && researchedItens.length > 0) {
     return (
       <button
         className={customClassName || defaultStyle }
         onClick={() => {
-          setResearchedItens([]);
+          setResearchedItens([] as T[]);
         }}
       >
         {btnName}

@@ -1,23 +1,26 @@
 import SearchBar from "../searchBar/SearchBar";
 import BackBtn from "../BackBtn/BackBtn";
+import { Dispatch, SetStateAction } from "react";
 
-interface Props {
+
+
+interface Props<T> {
   show: boolean;
-  setShow: (arg0: boolean) => void;
+  setShow: Dispatch<SetStateAction<boolean>>;
   btnCreateTitle: string;
-  researchedItems: object[]
-  setResearchedItems: (arg0:object[]) => void
-  fetchItemByTitle: (active: boolean, title: string) => Promise<any>
+  researchedItems: T[]
+  setResearchedItems: Dispatch<SetStateAction<T[]>>
+  fetchItemByTitle: (active: boolean, title: string) => Promise<T | undefined>
 }
 
-export default function SearchAndCreate({
+export default function SearchAndCreate<T>({
   show,
   setShow,
   btnCreateTitle,
   researchedItems,
   setResearchedItems,
   fetchItemByTitle
-}: Props) {
+}: Props<T>) {
 
   return (
     <div className="flex justify-center mb-10 gap-4">
@@ -36,7 +39,6 @@ export default function SearchAndCreate({
         {btnCreateTitle}
       </button>
       <SearchBar
-        researchedItens={researchedItems}
         setResearchedItens={setResearchedItems} 
         fetchItemByTitle={fetchItemByTitle}      />
       <BackBtn

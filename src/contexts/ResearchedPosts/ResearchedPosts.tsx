@@ -1,8 +1,8 @@
-import { ReactNode, createContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 
 interface ResearchedPostsContextType {
   researchedPosts: ListPostDTO[]
-  setResearchedPosts: (theme: ListPostDTO[]) => void
+  setResearchedPosts: Dispatch<SetStateAction<ListPostDTO[]>>
 }
 
 interface TypeReactNode {
