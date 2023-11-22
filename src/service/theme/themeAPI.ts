@@ -15,7 +15,7 @@ export async function fetchThemesByName(active=true, name:string) {
     const response = await Api.get(`/temas/titulo/${name}`)
     return response.data
   } catch (error) {
-    console.log(error)
+    console.log(error, active)
     return null
   }
 }
@@ -25,7 +25,7 @@ export async function fetchThemesById(active=true, id:string) {
     const response = await Api.get(`/temas/${id}`)
     return response.data
   } catch (error) {
-    console.log(error)
+    console.log(error, active)
     return null
   }
 }
